@@ -1,0 +1,5 @@
+# 忽略以下文件及路径
+.gradle/*
+.idea/*
+build/*
+*.iml
