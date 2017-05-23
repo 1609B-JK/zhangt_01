@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >  
+<mapper namespace="com.jk.dao.book.BookDao">
+
+
+
+    <!-- parameterType === parameterClass
+        resultType === resultClass
+        #{} === ##
+        ${} === $$
+     -->
+   <insert id="insertBook" parameterType="book">
+        INSERT INTO t_books
+        (t_id, t_name)
+        VALUES
+        (t_books_seq.nextval, #{bookName})
+   </insert>
+
+    <!-- 查询书籍列表 -->
+    <select id="selectBookList" parameterType="book" resultType="book">
+        select t_id as bookID,
+        t_name as bookName
+        from t_books
+    </select>
+
+    <!-- 删除 -->
+    <delete id="deleteBook" parameterType="book">
+        delete from t_books where t_id in
+        #{bookID}
+    </delete>
+
+    <!-- 根据ID查询书籍信息 -->
+    <select id="selectBookByID" parameterType="book" resultType="book">
+        select
+        t_id as bookID,
+        t_name as bookName
+        from t_books
+        where t_id = #{bookID}
+    </select>
+
+    <!-- 根据ID修改用户信息 -->
+    <update id="updateBookByID" parameterType="book">
+        update t_books set
+        t_name = #{bookName}
+        where t_id = #{bookID}
+    </update>
+   
+</mapper>   
